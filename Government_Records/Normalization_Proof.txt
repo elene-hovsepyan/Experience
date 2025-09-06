@@ -1,0 +1,101 @@
+
+Normalization Justification (1NF, 2NF, 3NF, BCNF)
+=================================================
+
+Notation used:
+R(attributes) - Denotes a relation (table) with listed attributes
+PK - Primary Key
+FD - Functional Dependency
+
+--------------------------------------------------
+1. AddressDict(AddressID, Street, City, State, PostalCode)
+- PK: AddressID
+- All attributes depend only on AddressID
+- No transitive or partial dependencies
+=> 1NF, 2NF, 3NF, BCNF
+
+2. Citizen(CitizenID, AddressID, FirstName, LastName, DOB, Gender, Phone, Email, NationalID)
+- PK: CitizenID
+- FD: CitizenID → all other attributes
+- NationalID is unique but not a candidate key; no violations
+=> 1NF, 2NF, 3NF, BCNF
+
+3. GovernmentDept(DeptID, LocationID, AgencyName, HeadEmployeeID)
+- PK: DeptID
+- FD: DeptID → all other attributes
+=> 1NF, 2NF, 3NF, BCNF
+
+4. Employee(EmployeeID, CitizenID, DeptID, Position, Salary)
+- PK: EmployeeID
+- FD: EmployeeID → all other attributes
+- CitizenID is unique and represents 1-to-1 mapping, not a violation
+=> 1NF, 2NF, 3NF, BCNF
+
+5. PermitDict(PermitTypeID, PermitType, Description)
+- PK: PermitTypeID
+- FD: PermitTypeID → PermitType, Description
+=> 1NF, 2NF, 3NF, BCNF
+
+6. Permit(PermitID, PermitTypeID, IssueDate, ExpiryDate, Status, CitizenID)
+- PK: PermitID
+- FD: PermitID → all other attributes
+- PermitTypeID and CitizenID are foreign keys
+=> 1NF, 2NF, 3NF, BCNF
+
+7. Facility(FacilityID, AddressID, Name, Type)
+- PK: FacilityID
+- FD: FacilityID → all other attributes
+=> 1NF, 2NF, 3NF, BCNF
+
+8. Service(ServiceID, DeptID, Name, Description)
+- PK: ServiceID
+- FD: ServiceID → all other attributes
+=> 1NF, 2NF, 3NF, BCNF
+
+9. ServiceRequest(RequestID, CitizenID, ServiceID, RequestDate, Status)
+- PK: RequestID
+- FD: RequestID → all other attributes
+=> 1NF, 2NF, 3NF, BCNF
+
+10. TaxRecord(TaxID, CitizenID, Year, Income, TaxPaid, Status)
+- PK: TaxID
+- FD: TaxID → all other attributes
+=> 1NF, 2NF, 3NF, BCNF
+
+11. Property(PropertyID, OwnerID, AddressID, Type, Valuation)
+- PK: PropertyID
+- FD: PropertyID → all other attributes
+=> 1NF, 2NF, 3NF, BCNF
+
+12. Vehicle(VehicleID, OwnerID, PlateNumber, Make, Model, Year)
+- PK: VehicleID
+- FD: VehicleID → all other attributes
+=> 1NF, 2NF, 3NF, BCNF
+
+13. LicenseDict(LicenseTypeID, LicenseType, Description)
+- PK: LicenseTypeID
+- FD: LicenseTypeID → LicenseType, Description
+=> 1NF, 2NF, 3NF, BCNF
+
+14. License(LicenseID, CitizenID, LicenseTypeID, IssueDate, ExpiryDate, Status)
+- PK: LicenseID
+- FD: LicenseID → all other attributes
+=> 1NF, 2NF, 3NF, BCNF
+
+15. CrimeRecord(RecordID, CitizenID, OfficerID, Date, Description)
+- PK: RecordID
+- FD: RecordID → all other attributes
+=> 1NF, 2NF, 3NF, BCNF
+
+16. Election(ElectionID, Year, Type, Region)
+- PK: ElectionID
+- FD: ElectionID → all other attributes
+=> 1NF, 2NF, 3NF, BCNF
+
+17. Vote(VoteID, CitizenID, ElectionID, VoteTime, CandidateVoted)
+- PK: VoteID
+- FD: VoteID → all other attributes
+=> 1NF, 2NF, 3NF, BCNF
+
+==================================================
+Conclusion: All 17 relations satisfy BCNF. There are no partial, transitive, or non-trivial dependencies where a non-superkey determines another attribute.
